@@ -10,8 +10,9 @@ public class MonsterController : MonoBehaviour
     NavMeshAgent navMesh;
     Animator ani;
     int HP;
-    bool isAttack = false;
 
+    bool isAttack = false;
+    bool isChasing = false; // 플레이어 알림을 받았는지 여부
 
     private SpawnManager myManager;
     private int mySpawnPointIndex;
@@ -20,33 +21,55 @@ public class MonsterController : MonoBehaviour
     private void Start()
     {
         HP = 50;
+        // XR 환경의 플레이어를 찾습니다.
         player = GameObject.Find("XR Origin (XR Rig)");
         navMesh = GetComponent<NavMeshAgent>();
         ani = GetComponent<Animator>();
-        //navMesh.destination = player.transform.position; 플레이어 위치 찾는건데 이거는 나중에 인식 범위 내에 들경우 활성화 하는 시긍로 수정 할 예정
+
+        // 처음 스폰 시에는 알림을 받기 전이므로 멈춰둡니다.
+        navMesh.isStopped = true;
     }
 
     private void Update()
     {
-        //distance = Vector3.Distance(player.transform.position, this.transform.position); 이것도 이따가 인식할 경우 계속 갱신하도록
-        if (distance <= 2.0f) //거리가 가까워지면 스탑
+        // 1. 알림을 받지 못했다면 아래 로직(거리 계산 등)을 아예 실행하지 않습니다.
+        if (!isChasing) return;
+
+        // 2. 알림을 받아 쫓는 상태일 때만 거리 갱신 및 이동 로직 실행
+        if (player != null)
         {
-            navMesh.isStopped = true;
-            if (isAttack == false)
+            distance = Vector3.Distance(player.transform.position, this.transform.position);
+
+            if (distance <= 2.0f) // 공격 사거리(2.0f) 이내
             {
-                ani.SetBool("Idle", true);
-                StartCoroutine(Attack());
+                navMesh.isStopped = true;
+                if (isAttack == false)
+                {
+                    ani.SetBool("Idle", true);
+                    StartCoroutine(Attack());
+                }
             }
-
-        }
-        else // 거리가 멀면 다시 이동 시작
-        {
-            ani.SetBool("Idle", false);
-
+            else // 공격 사거리 밖이면 플레이어를 향해 이동
+            {
+                navMesh.isStopped = false;
+                navMesh.SetDestination(player.transform.position); // 목적지 계속 갱신
+                ani.SetBool("Idle", false);
+            }
         }
     }
 
-    IEnumerator Attack() // 이거 좀더 손보고
+    // 플레이어의 SendAlert()에서 닿았을 때 호출되는 함수
+    public void OnReceiveAlert(Vector3 targetPos)
+    {
+        if (!isChasing)
+        {
+            // 알림을 받는 순간 추적 모드 ON
+            isChasing = true;
+            navMesh.isStopped = false;
+        }
+    }
+
+    IEnumerator Attack()
     {
         isAttack = true;
         yield return new WaitForSeconds(3.0f);
@@ -54,47 +77,55 @@ public class MonsterController : MonoBehaviour
         ani.SetBool("Attack", true);
         yield return new WaitForSeconds(0.5f);
 
-        player.GetComponent<PlayerController>().ApplyDamage(10);
-        isAttack = false;
-        ani.SetBool("Attack", true);
+        if (player != null)
+        {
+            player.GetComponent<PlayerController>().ApplyDamage(10);
+        }
 
+        isAttack = false;
+        // 주의: 공격이 끝난 후에는 애니메이션을 false로 꺼주어야 다음 동작이 꼬이지 않습니다.
+        ani.SetBool("Attack", false);
     }
 
-    private void OnTriggerEnter(Collider other)
+    // ==========================================
+    // [수정됨] 기존 OnTriggerEnter를 삭제하고, 외부에서 호출하는 TakeDamage 함수 생성
+    // ==========================================
+    public void TakeDamage(int damageAmount, Vector3 hitPosition)
     {
-        if (other.gameObject.CompareTag("Bullet"))
+        // 1. 히트 이펙트 생성 (검과 부딪힌 위치에서)
+        if (hitEffect != null)
         {
-            GameObject effect = Instantiate(hitEffect, other.transform.position, other.transform.rotation);
-            Destroy(other.gameObject); // 총알 제거
+            GameObject effect = Instantiate(hitEffect, hitPosition, Quaternion.identity);
             Destroy(effect, 2.0f);
-            HP -= 10;
-            if (HP < 0f)
+        }
+
+        // 2. 데미지 적용
+        HP -= damageAmount;
+
+        // 3. 체력이 0 이하가 되면 사망 처리
+        if (HP <= 0)
+        {
+            if (player != null)
             {
-                Destroy(gameObject);
                 player.GetComponent<PlayerController>().ScoreUP(100);
             }
-
+            Die();
         }
     }
 
-
-    // 스폰 매니저가 몬스터를 생성할 때 호출하여 정보를 전달해주는 함수
     public void Initialize(SpawnManager manager, int spawnIndex)
     {
         myManager = manager;
         mySpawnPointIndex = spawnIndex;
     }
 
-    // 몬스터 체력이 0이 되어 죽거나 파괴될 때 실행되는 로직
     public void Die()
     {
-        // 1. 매니저에게 내가 죽었다고 알림 (카운트 감소)
         if (myManager != null)
         {
             myManager.OnMonsterDied(mySpawnPointIndex);
         }
 
-        // 2. 몬스터 오브젝트 파괴
         Destroy(gameObject);
     }
 }
