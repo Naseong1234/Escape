@@ -20,7 +20,7 @@ public class MonsterController : MonoBehaviour
 
     private void Start()
     {
-        HP = 30;
+        HP = 40;
         // XR 환경의 플레이어를 찾습니다.
         player = GameObject.Find("XR Origin (XR Rig)");
         navMesh = GetComponent<NavMeshAgent>();
