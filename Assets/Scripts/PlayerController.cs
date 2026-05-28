@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI hpText;
 
     // 알림 반경 설정 (기본 2)
-    public float alertRadius = 2.0f; 
+    float alertRadius = 4.0f; 
 
     int HP;
 
@@ -61,12 +61,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /*
+    
     // Unity 에디터 씬(Scene) 창에서 플레이어의 알림 반경을 붉은색 반투명 원으로 보여줍니다.
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1, 0, 0, 0.2f);
         Gizmos.DrawSphere(transform.position, alertRadius);
     }
-    */
+    
 }

@@ -45,7 +45,7 @@ public class MonsterController : MonoBehaviour
                 navMesh.isStopped = true;
                 if (isAttack == false)
                 {
-                    ani.SetBool("Idle", true);
+                    ani.SetBool("isWalking", false);
                     StartCoroutine(Attack());
                 }
             }
@@ -53,7 +53,7 @@ public class MonsterController : MonoBehaviour
             {
                 navMesh.isStopped = false;
                 navMesh.SetDestination(player.transform.position); // 목적지 계속 갱신
-                ani.SetBool("Idle", false);
+                ani.SetBool("isWalking", true);
             }
         }
     }
@@ -72,7 +72,7 @@ public class MonsterController : MonoBehaviour
     IEnumerator Attack()
     {
         isAttack = true;
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2.0f);
 
         ani.SetBool("Attack", true);
         yield return new WaitForSeconds(0.5f);
