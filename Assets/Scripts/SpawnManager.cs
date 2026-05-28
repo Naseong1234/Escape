@@ -42,7 +42,6 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator MonsterSpawn()
     {
-        // 1. 무한 루프로 변경하여 매니저가 파괴되기 전까지 계속 작동하게 합니다.
         while (true)
         {
             if (current_spawn < max_spawn)
@@ -54,17 +53,19 @@ public class SpawnManager : MonoBehaviour
                     current_spawn_count[point]++;
                     current_spawn++;
 
-                    // 몬스터 생성
-                    GameObject newMonster = Instantiate(monster, spawnPoint[point].position, spawnPoint[point].rotation);
+                    // [추가된 부분] 스폰 포인트 기준 반경 1.0f 내에서 랜덤한 위치 계산
+                    Vector2 randomCircle = Random.insideUnitCircle * 1.0f;
+                    Vector3 randomOffset = new Vector3(randomCircle.x, 0f, randomCircle.y);
+                    Vector3 finalSpawnPos = spawnPoint[point].position + randomOffset;
 
-                    
-                    // 중요: 생성된 몬스터에게 자신이 어느 매니저의, 몇 번 포인트에서 생성되었는지 알려줍니다.
+                    // 몬스터 생성 (랜덤 오프셋이 적용된 finalSpawnPos 사용)
+                    GameObject newMonster = Instantiate(monster, finalSpawnPos, spawnPoint[point].rotation);
+
                     MonsterController mc = newMonster.GetComponent<MonsterController>();
                     if (mc != null)
                     {
                         mc.Initialize(this, point);
                     }
-                    
 
                     yield return new WaitForSeconds(spawnTime);
                 }
@@ -75,8 +76,6 @@ public class SpawnManager : MonoBehaviour
             }
             else
             {
-                // 2. 최대 스폰 수에 도달하면 무한루프를 돌며 리소스를 낭비하지 않고,
-                // current_spawn이 max_spawn보다 작아질 때까지(즉, 몬스터가 죽을 때까지) 코루틴을 '일시 정지' 합니다.
                 yield return new WaitUntil(() => current_spawn < max_spawn);
             }
         }

@@ -4,8 +4,8 @@ using UnityEngine.AI;
 
 public class MonsterController : MonoBehaviour
 {
-    public GameObject hitEffect;
-
+    // [수정됨] GameObject 대신 ParticleSystem을 직접 받습니다.
+    public ParticleSystem hitParticle;
     GameObject player;
     NavMeshAgent navMesh;
     Animator ani;
@@ -92,11 +92,17 @@ public class MonsterController : MonoBehaviour
     // ==========================================
     public void TakeDamage(int damageAmount, Vector3 hitPosition)
     {
-        // 1. 히트 이펙트 생성 (검과 부딪힌 위치에서)
-        if (hitEffect != null)
+        // 1. 파티클 이펙트 생성 및 실행
+        if (hitParticle != null)
         {
-            GameObject effect = Instantiate(hitEffect, hitPosition, Quaternion.identity);
-            Destroy(effect, 2.0f);
+            // 파티클을 피격 위치에 생성
+            ParticleSystem effect = Instantiate(hitParticle, hitPosition, Quaternion.identity);
+
+            // 파티클 한 번 실행
+            effect.Play();
+
+            // 2.0f 처럼 고정된 시간이 아니라, 해당 파티클의 실제 재생 길이(duration)만큼 기다렸다가 파괴
+            Destroy(effect.gameObject, effect.main.duration);
         }
 
         // 2. 데미지 적용
@@ -105,10 +111,7 @@ public class MonsterController : MonoBehaviour
         // 3. 체력이 0 이하가 되면 사망 처리
         if (HP <= 0)
         {
-            if (player != null)
-            {
-                player.GetComponent<PlayerController>().ScoreUP(100);
-            }
+            
             Die();
         }
     }
