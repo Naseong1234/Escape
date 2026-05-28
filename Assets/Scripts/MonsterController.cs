@@ -20,7 +20,7 @@ public class MonsterController : MonoBehaviour
 
     private void Start()
     {
-        HP = 50;
+        HP = 30;
         // XR 환경의 플레이어를 찾습니다.
         player = GameObject.Find("XR Origin (XR Rig)");
         navMesh = GetComponent<NavMeshAgent>();
@@ -96,8 +96,7 @@ public class MonsterController : MonoBehaviour
         if (hitParticle != null)
         {
             // 파티클을 피격 위치에 생성
-            ParticleSystem effect = Instantiate(hitParticle, hitPosition, Quaternion.identity);
-
+            ParticleSystem effect = Instantiate(hitParticle, hitPosition, Quaternion.identity, this.transform);
             // 파티클 한 번 실행
             effect.Play();
 

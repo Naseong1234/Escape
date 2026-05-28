@@ -51,8 +51,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.35
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &7669290824440886193
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,8 +104,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6, y: 1.26, z: 0.5}
-  m_Center: {x: 0, y: 0.63, z: 0}
+  m_Size: {x: 0.3, y: 1.1, z: 0.5}
+  m_Center: {x: 0, y: 0.65, z: 0}
 --- !u!1001 &453537518949657548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 759454850068207261}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -298,7 +298,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.1, z: 0}
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b7007b793fa40459b270e7230fd409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterController
-  hitParticle: {fileID: 0}
+  hitParticle: {fileID: 5051015518580176552, guid: 976ac7569c2fa8140b4849452a9930e1, type: 3}
 --- !u!4 &6888335581080018085 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6472518530401777513, guid: be3776e9bd6e31341b3490a035f6ea50, type: 3}

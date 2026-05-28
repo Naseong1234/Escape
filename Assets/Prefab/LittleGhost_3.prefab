@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 5073016566935620845}
   - component: {fileID: -7307667236194004908}
   - component: {fileID: 3372411602517595496}
+  - component: {fileID: 5860222151067681165}
   m_Layer: 0
   m_Name: LittleGhost_3
   m_TagString: Body
@@ -156,7 +157,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.3, y: 5.3, z: 5.3}
+  m_LocalScale: {x: 4.5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2143910219674479693}
@@ -174,7 +175,7 @@ Animator:
   m_GameObject: {fileID: 3181383259117829530}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2c11dc0ce8175b0498e69f1adb74cc18, type: 2}
+  m_Controller: {fileID: 9100000, guid: 23c33297606526a4e8d325c9d8696e32, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -228,7 +229,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -257,7 +258,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3181383259117829530}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.2
+  m_Radius: 0.15
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -282,7 +283,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b7007b793fa40459b270e7230fd409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterController
-  hitParticle: {fileID: 0}
+  hitParticle: {fileID: 5051015518580176552, guid: 976ac7569c2fa8140b4849452a9930e1, type: 3}
+--- !u!136 &5860222151067681165
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3181383259117829530}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.15
+  m_Height: 0.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.44, z: 0}
 --- !u!1 &3358139633200756485
 GameObject:
   m_ObjectHideFlags: 0

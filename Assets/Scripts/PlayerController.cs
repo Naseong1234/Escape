@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI hpText;
 
     // 알림 반경 설정 (기본 2)
-    float alertRadius = 4.0f; 
+    float alertRadius = 8.0f; 
 
     int HP;
 

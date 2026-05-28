@@ -239,9 +239,9 @@ GameObject:
   - component: {fileID: 6385382474337854941}
   - component: {fileID: 1479579973196535019}
   - component: {fileID: 8208370834126068185}
-  - component: {fileID: 6116949558915025625}
   - component: {fileID: 3139327860043214582}
   - component: {fileID: 5785994173932276358}
+  - component: {fileID: 6116949558915025625}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -259,7 +259,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2945765764983615904}
@@ -299,7 +299,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1283394386370765525}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -312,19 +312,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6116949558915025625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283394386370765525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33b7007b793fa40459b270e7230fd409, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MonsterController
-  hitParticle: {fileID: 0}
 --- !u!54 &3139327860043214582
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -371,10 +358,23 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.1, z: 0}
+--- !u!114 &6116949558915025625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283394386370765525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b7007b793fa40459b270e7230fd409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterController
+  hitParticle: {fileID: 5051015518580176552, guid: 976ac7569c2fa8140b4849452a9930e1, type: 3}
 --- !u!1 &1517301847392108619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,7 +1096,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.35
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4431595567328208940
 GameObject:
@@ -2069,7 +2069,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 1.3, z: 0.5}
+  m_Size: {x: 0.4, y: 1.3, z: 0.5}
   m_Center: {x: 0, y: 0.65, z: 0}
 --- !u!1 &7561271585459570848
 GameObject:
