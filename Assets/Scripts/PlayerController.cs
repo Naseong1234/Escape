@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI hpText;
 
     // 알림 반경 설정 (기본 2)
-    float alertRadius = 8.0f; 
+    float alertRadius = 10.0f; 
 
     int HP;
 
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     // 긴급 탈출 스킬 등을 사용할 때 이 함수를 호출하면 범위가 10으로 늘어납니다.
     public void EmergencyEscape() // 나중에 탈출 부분때 이 함수 호출하면 될듯
     {
-        alertRadius = 10.0f;
+        alertRadius = 50.0f;
     }
 
 

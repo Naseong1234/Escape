@@ -5,7 +5,7 @@ public class SpawnManager : MonoBehaviour
 {
     public Transform[] spawnPoint;
     public GameObject monster;
-    public float spawnTime = 3f;
+    public float spawnTime = 4f;
 
     [HideInInspector]
     int max_monster_spawnpoint; // 최대 스폰 포인트 갯수
