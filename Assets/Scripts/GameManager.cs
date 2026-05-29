@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     BGMManager BGM_Manager;
 
     int core_Count = 0;
-    bool isEscape = false;
+    public bool isEscape = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

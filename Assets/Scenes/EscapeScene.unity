@@ -495,7 +495,6 @@ MonoBehaviour:
   - {fileID: 64283089}
   - {fileID: 1897561902}
   monster: {fileID: 3181383259117829530, guid: cf55c23976dacca40b4e5b43a2f61554, type: 3}
-  spawnTime: 3
 --- !u!4 &235009762
 Transform:
   m_ObjectHideFlags: 0
@@ -1823,12 +1822,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 916924918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 68.78764, y: -1.70776, z: 138.26501}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1133700347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &916924920
 MonoBehaviour:
@@ -1843,6 +1842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   escapeDoor_Particle: {fileID: 1887072439}
+  isEscape: 0
 --- !u!4 &941016038 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 126646718764878887, guid: c68e0fb6142e2814ab2cf99742bec3f0, type: 3}
@@ -2384,6 +2384,7 @@ Transform:
   - {fileID: 1285601948}
   - {fileID: 235009762}
   - {fileID: 2019285026}
+  - {fileID: 916924919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1180868276
@@ -2614,7 +2615,6 @@ MonoBehaviour:
   - {fileID: 1529093691}
   - {fileID: 1181085161}
   monster: {fileID: 1283394386370765525, guid: 15cd722a09f3b5f4a9d0a7fe901c43b4, type: 3}
-  spawnTime: 3
 --- !u!4 &1285601948
 Transform:
   m_ObjectHideFlags: 0
@@ -4110,7 +4110,6 @@ MonoBehaviour:
   - {fileID: 277554679}
   - {fileID: 2026669725}
   monster: {fileID: 759454850068207261, guid: c68e0fb6142e2814ab2cf99742bec3f0, type: 3}
-  spawnTime: 3
 --- !u!4 &2019285026
 Transform:
   m_ObjectHideFlags: 0
@@ -4404,6 +4403,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7739472265000711269, guid: 34e44c5167ba0c548b120f72e05dce86, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1641677872727413374}
+    - targetCorrespondingSourceObject: {fileID: 7739472265000711269, guid: 34e44c5167ba0c548b120f72e05dce86, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1641677872727413377}
   m_SourcePrefab: {fileID: 100100000, guid: 34e44c5167ba0c548b120f72e05dce86, type: 3}
 --- !u!4 &1641677872727413372 stripped
 Transform:
@@ -4436,6 +4438,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 3, z: 0.5}
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &1641677872727413377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641677872727413373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd15601cbd7786409fa295f2a4b7dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EscapeManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4449,5 +4463,4 @@ SceneRoots:
   - {fileID: 1421789858}
   - {fileID: 1830278126}
   - {fileID: 441983052}
-  - {fileID: 916924919}
   - {fileID: 1641677872727413371}
