@@ -15,34 +15,35 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.Find("XR Origin (XR Rig)").GetComponent<PlayerController>();
         BGM_Manager = GameObject.Find("BGM Manager").GetComponent<BGMManager>();
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        EscapeLogic();
+        if (!isEscape)
+        {
+            EscapeLogic();
+
+        }
     }
 
     public void Core_Destruction_Count()
     {
-        core_Count++;
+        core_Count += 1;
     }
 
     void EscapeLogic()
     {
-        if (core_Count >= 2)
+        if (core_Count >= 3)
         {
             isEscape = true;
-            core_Count = 0;
-        }
-
-        if (isEscape)
-        {
             player.EmergencyEscape();
             escapeDoor_Particle.Play();
-            BGM_Manager.BGMSound_Play(2);
+            BGM_Manager.BGMSound_Play(1);
+
         }
+
     }
 
     public void killCount_UP()

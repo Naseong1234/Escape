@@ -20,13 +20,13 @@ public class BGMManager : MonoBehaviour
         bgmSource.loop = true;
 
         // 게임 시작 시 1번 BGM 재생
-        BGMSound_Play(1);
+        BGMSound_Play(0);
     }
 
     public void MonsterSound_Play(int index)
     {
         // 효과음은 겹쳐서 나야 하므로 PlayOneShot을 사용합니다.
-        monsterSource.PlayOneShot(monster_sounds[index]);
+        monsterSource.PlayOneShot(monster_sounds[index], 2);
     }
 
     public void BGMSound_Play(int index)

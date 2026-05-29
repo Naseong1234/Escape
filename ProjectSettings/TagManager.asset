@@ -7,6 +7,9 @@ TagManager:
   - Head
   - Body
   - Sword
+  - Zombie
+  - Skeleton
+  - Ghost
   layers:
   - Default
   - TransparentFX

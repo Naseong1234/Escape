@@ -16,8 +16,7 @@ public class EscapeManager : MonoBehaviour
         
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         if (gameManager.isEscape)
         {

@@ -46,23 +46,13 @@ public class MonsterController : MonoBehaviour
         {
             distance = Vector3.Distance(player.transform.position, this.transform.position);
 
+            
             if (distance <= 2.0f) // 공격 사거리(2.0f) 이내
             {
                 navMesh.isStopped = true;
                 if (isAttack == false)
                 {
-                    if (gameObject.name == "Zombie")
-                    {
-                        BGM_Manager.MonsterSound_Play(0);
-                    }
-                    else if(gameObject.name == "Skeleton")
-                    {
-                        BGM_Manager.MonsterSound_Play(1);
-                    }
-                    else if (gameObject.name == "Ghost")
-                    {
-                        BGM_Manager.MonsterSound_Play(2);
-                    }
+                    
                     ani.SetBool("isWalking", false);
                     StartCoroutine(Attack());
                 }
@@ -84,6 +74,18 @@ public class MonsterController : MonoBehaviour
             // 알림을 받는 순간 추적 모드 ON
             isChasing = true;
             navMesh.isStopped = false;
+            if (gameObject.CompareTag("Zombie"))
+            {
+                BGM_Manager.MonsterSound_Play(0);
+            }
+            else if (gameObject.CompareTag("Skeleton"))
+            {
+                BGM_Manager.MonsterSound_Play(1);
+            }
+            else if (gameObject.CompareTag("Ghost"))
+            {
+                BGM_Manager.MonsterSound_Play(2);
+            }
         }
     }
 
