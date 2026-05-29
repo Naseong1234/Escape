@@ -9,6 +9,8 @@ public class MonsterController : MonoBehaviour
     GameObject player;
     NavMeshAgent navMesh;
     Animator ani;
+    BGMManager BGM_Manager;
+
     int HP;
 
     bool isAttack = false;
@@ -25,6 +27,7 @@ public class MonsterController : MonoBehaviour
         player = GameObject.Find("XR Origin (XR Rig)");
         navMesh = GetComponent<NavMeshAgent>();
         ani = GetComponent<Animator>();
+        BGM_Manager = GameObject.Find("BGM Manager").GetComponent<BGMManager>();
 
         // 처음 스폰 시에는 알림을 받기 전이므로 멈춰둡니다.
         navMesh.isStopped = true;
@@ -45,6 +48,18 @@ public class MonsterController : MonoBehaviour
                 navMesh.isStopped = true;
                 if (isAttack == false)
                 {
+                    if (gameObject.name == "Zombie")
+                    {
+                        BGM_Manager.playSound(0);
+                    }
+                    else if(gameObject.name == "Skeleton")
+                    {
+                        BGM_Manager.playSound(1);
+                    }
+                    else if (gameObject.name == "Ghost")
+                    {
+                        BGM_Manager.playSound(2);
+                    }
                     ani.SetBool("isWalking", false);
                     StartCoroutine(Attack());
                 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Head
   - Body
+  - Sword
   layers:
   - Default
   - TransparentFX
