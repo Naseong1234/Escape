@@ -8,12 +8,14 @@ public class GameManager : MonoBehaviour
     BGMManager BGM_Manager;
 
     int core_Count = 0;
+    int kill_Count = 0;
     public bool isEscape = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.Find("XR Origin (XR Rig)").GetComponent<PlayerController>();
         BGM_Manager = GameObject.Find("BGM Manager").GetComponent<BGMManager>();
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -41,5 +43,10 @@ public class GameManager : MonoBehaviour
             escapeDoor_Particle.Play();
             BGM_Manager.BGMSound_Play(2);
         }
+    }
+
+    public void killCount_UP()
+    {
+        kill_Count++;
     }
 }

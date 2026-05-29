@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,7 @@ public class MonsterController : MonoBehaviour
     NavMeshAgent navMesh;
     Animator ani;
     BGMManager BGM_Manager;
+    GameManager gameManager;
 
     int HP;
 
@@ -28,6 +30,7 @@ public class MonsterController : MonoBehaviour
         navMesh = GetComponent<NavMeshAgent>();
         ani = GetComponent<Animator>();
         BGM_Manager = GameObject.Find("BGM Manager").GetComponent<BGMManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         // 처음 스폰 시에는 알림을 받기 전이므로 멈춰둡니다.
         navMesh.isStopped = true;
@@ -141,6 +144,7 @@ public class MonsterController : MonoBehaviour
         if (myManager != null)
         {
             myManager.OnMonsterDied(mySpawnPointIndex);
+            gameManager.killCount_UP();
         }
 
         Destroy(gameObject);

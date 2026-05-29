@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EscapeManager : MonoBehaviour
 {
@@ -18,5 +19,9 @@ public class EscapeManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (gameManager.isEscape)
+        {
+            SceneManager.LoadScene("FreedomScene");
+        }
     }
 }
