@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     PlayerController player;
+    public ParticleSystem escapeDoor_Particle;
     GameObject escape_Door;
 
     int core_Count = 0;
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
         if (isEscape)
         {
             player.EmergencyEscape();
-            escape_Door.SetActive(true);
+            escapeDoor_Particle.Play();
         }
     }
 
