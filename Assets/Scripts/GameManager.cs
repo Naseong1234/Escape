@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     PlayerController player;
     public ParticleSystem escapeDoor_Particle;
-    GameObject escape_Door;
+    BGMManager BGM_Manager;
 
     int core_Count = 0;
     bool isEscape = false;
@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("XR Origin (XR Rig)").GetComponent<PlayerController>();
-
+        BGM_Manager = GameObject.Find("BGM Manager").GetComponent<BGMManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        EscapeLogic();
     }
 
     public void Core_Destruction_Count()
@@ -39,8 +39,7 @@ public class GameManager : MonoBehaviour
         {
             player.EmergencyEscape();
             escapeDoor_Particle.Play();
+            BGM_Manager.BGMSound_Play(2);
         }
     }
-
-
 }

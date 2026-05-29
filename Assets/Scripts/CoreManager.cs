@@ -20,6 +20,7 @@ public class CoreManager : MonoBehaviour
         if (other.gameObject.CompareTag("Sword"))
         {
             gameManager.Core_Destruction_Count();
+            Destroy(gameObject, 1f);
         }
     }
 }

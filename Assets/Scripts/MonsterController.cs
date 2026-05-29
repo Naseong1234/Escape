@@ -50,15 +50,15 @@ public class MonsterController : MonoBehaviour
                 {
                     if (gameObject.name == "Zombie")
                     {
-                        BGM_Manager.playSound(0);
+                        BGM_Manager.MonsterSound_Play(0);
                     }
                     else if(gameObject.name == "Skeleton")
                     {
-                        BGM_Manager.playSound(1);
+                        BGM_Manager.MonsterSound_Play(1);
                     }
                     else if (gameObject.name == "Ghost")
                     {
-                        BGM_Manager.playSound(2);
+                        BGM_Manager.MonsterSound_Play(2);
                     }
                     ani.SetBool("isWalking", false);
                     StartCoroutine(Attack());

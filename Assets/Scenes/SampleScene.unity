@@ -1807,6 +1807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 916924919}
+  - component: {fileID: 916924920}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1829,6 +1830,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &916924920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916924918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6daa1bb5af6b6c044a742f016133bc58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  escapeDoor_Particle: {fileID: 1887072439}
 --- !u!4 &941016038 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 126646718764878887, guid: c68e0fb6142e2814ab2cf99742bec3f0, type: 3}
@@ -3885,9 +3899,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 289206646391978938, guid: c986aa35778cb984ab23a0bd2bbe3043, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769388325872966700, guid: c986aa35778cb984ab23a0bd2bbe3043, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020158771483634126, guid: c986aa35778cb984ab23a0bd2bbe3043, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254064171438129164, guid: c986aa35778cb984ab23a0bd2bbe3043, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7401413736848907726, guid: c986aa35778cb984ab23a0bd2bbe3043, type: 3}
       propertyPath: m_Name
       value: Magic circle 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750283507596470423, guid: c986aa35778cb984ab23a0bd2bbe3043, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3972,6 +4006,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7805472700915911517, guid: cf55c23976dacca40b4e5b43a2f61554, type: 3}
   m_PrefabInstance: {fileID: 1870721905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1887072439 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2769388325872966700, guid: c986aa35778cb984ab23a0bd2bbe3043, type: 3}
+  m_PrefabInstance: {fileID: 1839185217}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1897561901
 GameObject:
