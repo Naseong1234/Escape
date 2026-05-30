@@ -5,17 +5,16 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public Animation damageEffect;
-    public TextMeshProUGUI hpText;
+    UIEvent UImanager;
 
     // 알림 반경 설정 (기본 2)
     float alertRadius = 12.0f; 
 
-    int HP;
 
     void Start()
     {
-        HP = 100;
-        hpText.text = "HP: " + HP;
+        UImanager = GameObject.Find("UI Event").GetComponent<UIEvent>();
+        UImanager.Set_PlayerHP();
     }
 
     void Update()
@@ -51,11 +50,11 @@ public class PlayerController : MonoBehaviour
     public void ApplyDamage(int damage)
     {
         damageEffect.Play();
-        HP -= damage;
-        hpText.text = "HP: " + HP;
+        GameManager.instance.player_HP -= damage;
+        UImanager.Set_PlayerHP();
         
         // HP가 0과 같을 때도 죽도록 수정 (<=)
-        if (HP <= 0) 
+        if (GameManager.instance.player_HP <= 0) 
         {
             SceneManager.LoadScene(0);
         }
