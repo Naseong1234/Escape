@@ -14,6 +14,9 @@ public class UIEvent : MonoBehaviour
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
+    public GameObject hp_obj;
+    public GameObject score_obj;
+    public GameObject time_obj;
 
 
     void Start()
@@ -56,11 +59,21 @@ public class UIEvent : MonoBehaviour
     IEnumerator Freedom()
     {
         freedom_Image.SetActive(true);
-        scoreText.text = "처치한 몬스터 숫자 : " + GameManager.instance.kill_Count.ToString();
-        timeText.text = "공략에 걸린 시간 : " + GameManager.instance.time_Count.ToString("F2");
+
+        // 1. 전체 시간을 분과 초로 계산
+        int minutes = Mathf.FloorToInt(GameManager.instance.time_Count / 60f);
+        int seconds = Mathf.FloorToInt(GameManager.instance.time_Count % 60f);
+
+        // 2. 텍스트 적용 (문자열 보간 사용)
+        scoreText.text = $"처치한 몬스터 숫자 : {GameManager.instance.kill_Count}";
+        timeText.text = $"공략에 걸린 시간 : {minutes}분 {seconds}초";
 
         yield return new WaitForSeconds(5.0f);
+
         freedom_Image.SetActive(false);
+        hp_obj.SetActive(true);
+        score_obj.SetActive(true);
+        time_obj.SetActive(true);
     }
 
     public void Set_PlayerHP()

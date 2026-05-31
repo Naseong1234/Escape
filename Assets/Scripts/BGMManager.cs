@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BGMManager : MonoBehaviour
 {
@@ -20,7 +21,19 @@ public class BGMManager : MonoBehaviour
         bgmSource.loop = true;
 
         // 게임 시작 시 1번 BGM 재생
-        BGMSound_Play(0);
+
+        // 1. 현재 켜져 있는 씬의 이름을 가져옵니다.
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        // 2. 씬 이름에 따라 알맞은 코루틴을 실행합니다.
+        if (currentSceneName == "EscapeScene")
+        {
+            BGMSound_Play(0);
+        }
+        else if (currentSceneName == "FreedomScene")
+        {
+            BGMSound_Play(2);
+        }
     }
 
     public void MonsterSound_Play(int index)
