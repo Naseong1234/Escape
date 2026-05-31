@@ -1,13 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     public Animation damageEffect;
     UIEvent UImanager;
 
-    // 알림 반경 설정 (기본 2)
+    // 알림 반경 설정 
     float alertRadius = 12.0f; 
 
 
@@ -19,10 +18,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // 매 프레임 주변에 알림을 뿌립니다.
+        // 매 프레임마다 주변에 알림 뿌리기
         SendAlert(); 
     }
-
+    // 여기부터
     void SendAlert()
     {
         // 플레이어 위치를 기준으로 alertRadius 반경 내에 있는 모든 콜라이더를 찾습니다.
@@ -39,11 +38,11 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    // 여기까지 AI의 도움을 받았습니다.
 
-    // 긴급 탈출 스킬 등을 사용할 때 이 함수를 호출하면 범위가 10으로 늘어납니다.
     public void EmergencyEscape() // 나중에 탈출 부분때 이 함수 호출하면 될듯
     {
-        alertRadius = 70.0f;
+        alertRadius = 100.0f;
     }
 
 
@@ -53,7 +52,6 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.player_HP -= damage;
         UImanager.Set_PlayerHP();
         
-        // HP가 0과 같을 때도 죽도록 수정 (<=)
         if (GameManager.instance.player_HP <= 0) 
         {
             SceneManager.LoadScene(0);
@@ -61,7 +59,7 @@ public class PlayerController : MonoBehaviour
     }
 
     
-    // Unity 에디터 씬(Scene) 창에서 플레이어의 알림 반경을 붉은색 반투명 원으로 보여줍니다.
+    // 씬 창에서 플레이어의 알림 반경을 붉은색 반투명 원으로 보여주는 함수
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1, 0, 0, 0.2f);

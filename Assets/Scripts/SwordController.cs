@@ -4,6 +4,7 @@ public class SwordController : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        // 부모 찾는함수 까먹어서 AI의 도움을 받았습니다.
         // 1. 부위별 콜라이더(머리, 몸통)가 몬스터의 자식 오브젝트일 수 있으므로,
         // GetComponentInParent를 사용하여 최상위 부모에 있는 MonsterController를 찾습니다.
         MonsterController monster = other.GetComponentInParent<MonsterController>();

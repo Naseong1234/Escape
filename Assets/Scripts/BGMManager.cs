@@ -6,14 +6,13 @@ public class BGMManager : MonoBehaviour
     public AudioClip[] monster_sounds;
     public AudioClip[] BGM_sounds;
 
-    // BGM용과 효과음(몬스터)용 오디오 소스를 따로 관리합니다.
     private AudioSource monsterSource;
     private AudioSource bgmSource;
 
+
+    //사운드에서 BGM -> 겹침x, 몬스터 -> 겹침o 하도록 하는법이 헷갈려서 AI의 도움을 받았습니다.
     void Start()
     {
-        // 코드에서 자동으로 AudioSource 컴포넌트 2개를 생성하고 붙여줍니다.
-        // 이렇게 하면 유니티 인스펙터에서 매번 수동으로 세팅할 필요가 없어 편합니다.
         bgmSource = gameObject.AddComponent<AudioSource>();
         monsterSource = gameObject.AddComponent<AudioSource>();
 
@@ -22,10 +21,10 @@ public class BGMManager : MonoBehaviour
 
         // 게임 시작 시 1번 BGM 재생
 
-        // 1. 현재 켜져 있는 씬의 이름을 가져옵니다.
+        // 현재 켜져 있는 씬의 이름가져오기
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        // 2. 씬 이름에 따라 알맞은 코루틴을 실행합니다.
+        //씬 이름에 따라 알맞은 코루틴을 실행
         if (currentSceneName == "EscapeScene")
         {
             BGMSound_Play(0);

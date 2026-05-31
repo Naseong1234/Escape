@@ -5,13 +5,12 @@ public class SpawnManager : MonoBehaviour
 {
     public Transform[] spawnPoint;
     public GameObject monster;
-    float spawnTime = 4f;
+    float spawnTime = 3f;
 
     [HideInInspector]
     int max_monster_spawnpoint; // 최대 스폰 포인트 갯수
     int max_spawn; // 최대 스폰수
 
-    // 외부에서 함부로 수정하지 못하도록 private으로 숨기고 인스펙터에서만 확인 가능하게(필요시)
     int current_spawn = 0;
 
     int Max_spawn_count = 3; // 위치당 최대 스폰수
@@ -53,12 +52,12 @@ public class SpawnManager : MonoBehaviour
                     current_spawn_count[point]++;
                     current_spawn++;
 
-                    // [추가된 부분] 스폰 포인트 기준 반경 1.0f 내에서 랜덤한 위치 계산
+                    // 스폰 포인트 기준 반경 1.0f 내에서 랜덤한 위치 계산
                     Vector2 randomCircle = Random.insideUnitCircle * 1.0f;
                     Vector3 randomOffset = new Vector3(randomCircle.x, 0f, randomCircle.y);
                     Vector3 finalSpawnPos = spawnPoint[point].position + randomOffset;
 
-                    // 몬스터 생성 (랜덤 오프셋이 적용된 finalSpawnPos 사용)
+                    // 몬스터 생성
                     GameObject newMonster = Instantiate(monster, finalSpawnPos, spawnPoint[point].rotation);
 
                     MonsterController mc = newMonster.GetComponent<MonsterController>();
@@ -81,10 +80,9 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    // 3. 몬스터가 죽었을 때 호출될 퍼블릭 함수
+    // 몬스터가 죽었을 때 호출될 함수
     public void OnMonsterDied(int pointIndex)
     {
-        // 안전 장치: 카운트가 0 이하로 떨어지는 것을 방지
         if (current_spawn > 0) current_spawn--;
         if (current_spawn_count[pointIndex] > 0) current_spawn_count[pointIndex]--;
     }

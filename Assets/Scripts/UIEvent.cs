@@ -1,16 +1,13 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement; // 씬의 이름을 가져오기 위해 반드시 추가해야 합니다!
+using UnityEngine.SceneManagement;
 
 public class UIEvent : MonoBehaviour
 {
-
-
-    // public을 붙여야 유니티 인스펙터 창에서 이미지를 연결할 수 있습니다.
     public GameObject intro_Image;
     public GameObject escape_Image;
-    public GameObject freedom_Image; // FreedomScene용 이미지 변수 추가
+    public GameObject freedom_Image; 
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
@@ -21,10 +18,10 @@ public class UIEvent : MonoBehaviour
 
     void Start()
     {
-        // 1. 현재 켜져 있는 씬의 이름을 가져옵니다.
+        // 현재 켜져 있는 씬의 이름을 가져오기
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        // 2. 씬 이름에 따라 알맞은 코루틴을 실행합니다.
+        // 씬 이름에 따라 알맞은 코루틴을 실행
         if (currentSceneName == "EscapeScene")
         {
             StartCoroutine(Intro());
@@ -33,12 +30,6 @@ public class UIEvent : MonoBehaviour
         {
             StartCoroutine(Freedom());
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     IEnumerator Intro()
@@ -55,11 +46,11 @@ public class UIEvent : MonoBehaviour
         escape_Image.SetActive(false);
     }
 
-    // FreedomScene에서 실행될 새로운 코루틴
     IEnumerator Freedom()
     {
         freedom_Image.SetActive(true);
 
+        // 시간을 분 초 하는 법 까먹어서 AI 도움 받았습니다. 
         // 1. 전체 시간을 분과 초로 계산
         int minutes = Mathf.FloorToInt(GameManager.instance.time_Count / 60f);
         int seconds = Mathf.FloorToInt(GameManager.instance.time_Count % 60f);
