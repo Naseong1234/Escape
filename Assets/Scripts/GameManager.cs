@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,6 +39,8 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("XR Origin (XR Rig)").GetComponent<PlayerController>();
         BGM_Manager = GameObject.Find("BGM Manager").GetComponent<BGMManager>();
         UIEvent = GameObject.Find("UI Event").GetComponent<UIEvent>();
+        // 수정됨: VR 기기가 켜질 때까지 기다리는 코루틴을 실행합니다.
+        StartCoroutine(SetRightEyeDelay());
 
         //DontDestroyOnLoad(gameObject);
     }
@@ -74,5 +78,14 @@ public class GameManager : MonoBehaviour
     public void killCount_UP()
     {
         kill_Count++;
+    }
+
+    IEnumerator SetRightEyeDelay()
+    {
+        // 1. XR 기기가 완전히 인식되고 활성화될 때까지 매 프레임 대기합니다.
+        yield return new WaitUntil(() => XRSettings.isDeviceActive);
+
+        // 2. 활성화가 완료된 직후에 모니터 송출을 오른쪽 눈으로 강제 변경합니다.
+        XRSettings.gameViewRenderMode = GameViewRenderMode.RightEye;
     }
 }
